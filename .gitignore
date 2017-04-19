@@ -1,0 +1,27 @@
+# Gradle
+build
+.gradle
+
+# IntelliJ
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Mac OS
+.DS_Store
+
+# client
+web-client/out
+web-client/build
+web-client/node_modules
+web-client/lib
+
+
+# server
+server/docker/libs
+server/build
+server/elm-stuff
+server/out
+server/log
+server/runInDocker.sh
