@@ -21,7 +21,7 @@ class HeaderBuilder {
 
     fun addHeader(line: String) {
         try {
-            if(line.length == 0) {
+            if (line.length == 0) {
                 throw IndexOutOfBoundsException("Invalid header format.")
             }
             val fieldName = line.substringBefore(":").trim()

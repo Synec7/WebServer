@@ -22,17 +22,11 @@ class WebClient(private val socket: Socket) : Runnable {
                     responseHandler.buildResponse(request)
             )
         } catch (ioe: IOException) {
-            responseHandler.sendResponse(
-                    BadRequestResponse()
-            )
+            responseHandler.sendResponse(BadRequestResponse())
         } catch (iae: IllegalArgumentException) {
-            responseHandler.sendResponse(
-                    BadRequestResponse()
-            )
+            responseHandler.sendResponse(BadRequestResponse())
         } catch(e: Exception) {
-            responseHandler.sendResponse(
-                    BadRequestResponse()
-            )
+            responseHandler.sendResponse(BadRequestResponse())
         } finally {
             this.socket.getOutputStream().close()
             this.socket.close()

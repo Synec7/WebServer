@@ -1,9 +1,9 @@
 package response
 
 import header.HttpHeader
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNotNull
 import method.HttpMethod
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import request.Request
@@ -72,30 +72,50 @@ class ResponseHandlerTest {
         assertEquals(responseText, response.getResponseText())
     }
 
-//
-//    @Test
-//    fun buildInvalidBodyPostResponse() {
-//        val rh = ResponseHandler(System.out)
-//        val responseString = "HTTP/1.1 ${StatusCode.BAD_REQUEST.code} ${StatusCode.BAD_REQUEST.description}\r\n" +
-//                "Date:Mon, 10 Apr 2017 07\r\nConnection:close\r\n\r\n"
-//        assertEquals(responseString, rh.buildResponse(HttpMethod.POST, "application/json", null))
-//    }
-//
-//    @Test
-//    fun buildValidJsonPostResponse() {
-//        val rh = ResponseHandler(System.out)
-//        val responseString = "HTTP/1.1 ${StatusCode.OK.code} ${StatusCode.OK.description}\r\n" +
-//                "Date:Mon, 10 Apr 2017 07\r\nConnection:close\r\n\r\n" +
-//                "ABC".toByteArray(Charsets.UTF_8).toString(Charsets.UTF_8)
-//        assertEquals(responseString, rh.buildResponse(HttpMethod.POST, "application/json", "ABC".toByteArray()) +
-//                rh.response.getResponseBody()!!.toString(Charsets.UTF_8))
-//    }
-//
-//    @Test
-//    fun calculateMd5HashHexValidInput() {
-//        val rh = ResponseHandler(System.out)
-//        val path = Paths.get("/Users/vincente.campisi/IdeaProjects/webserver/src/test/kotlin/response/3765")
-//        assertEquals("0c2da7ba464827e2fb4fbcb6ef36c6ba", rh.calculateHash(Files.readAllBytes(path)))
-//    }
+    @Test
+    fun buildValidJsonResponse() {
+        val response = rh.buildResponse(Request(
+                HttpMethod.POST,
+                listOf(HttpHeader("content-length", "3"), HttpHeader("content-type", "application/json")),
+                "abc".toByteArray(Charsets.ISO_8859_1))
+        )
+
+        assertNotNull(response)
+        var responseString = "HTTP/1.1 ${StatusCode.OK.code} ${StatusCode.OK.description}\r\n"
+        responseString += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
+        responseString += "Connection:close\r\n"
+        responseString += "Content-Length:3\r\n"
+        responseString += "Content-Type:application/json;charset=utf-8\r\n"
+
+        assertEquals(responseString, response.getResponseText())
+        assertEquals("abc", response.responseBody!!.toString(Charsets.UTF_8))
+    }
+
+    @Test
+    fun buildValidBinaryResponse() {
+        val response = rh.buildResponse(Request(
+                HttpMethod.POST,
+                listOf(HttpHeader("content-length", "3"), HttpHeader("content-type", "application/octet-stream")),
+                "abc".toByteArray(Charsets.ISO_8859_1))
+        )
+
+        var responseString = "HTTP/1.1 ${StatusCode.OK.code} ${StatusCode.OK.description}\r\n"
+        responseString += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
+        responseString += "Connection:close\r\n"
+        responseString += "Content-Length:32\r\n"
+        responseString += "Content-Type:text/plain;charset=utf-8\r\n"
+
+        assertEquals(responseString, response.getResponseText())
+        assertEquals("900150983cd24fb0d6963f7d28e17f72", response.responseBody!!.toString(Charsets.UTF_8))
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun buildEmptyBodyJsonResponse() {
+        val response = rh.buildResponse(Request(
+                HttpMethod.POST,
+                listOf(HttpHeader("content-length", "3"), HttpHeader("content-type", "application/octet-stream")),
+                "".toByteArray(Charsets.ISO_8859_1))
+        )
+    }
 
 }
