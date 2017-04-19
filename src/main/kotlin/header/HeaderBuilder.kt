@@ -24,8 +24,8 @@ class HeaderBuilder {
             if(line.length == 0) {
                 throw IndexOutOfBoundsException("Invalid header format.")
             }
-            val fieldName = line.split(":")[0].trim()
-            val fieldValue = line.substring(line.indexOf(":")+1).trim()
+            val fieldName = line.substringBefore(":").trim()
+            val fieldValue = line.substringAfter(":").trim()
 
             this.headers.add(HttpHeader(fieldName, fieldValue))
         } catch (iob: IndexOutOfBoundsException) {

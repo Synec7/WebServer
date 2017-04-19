@@ -1,3 +1,4 @@
+
 import header.HeaderBuilderTest
 import header.HeaderReaderTest
 import header.HttpHeaderTest
@@ -6,10 +7,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Suite
 import request.RequestReaderTest
 import request.RequestTest
-import response.BadRequestResponseTest
-import response.BinaryResponseTest
-import response.JsonResponseTest
-import response.NotImplementedResponseTest
+import response.*
 
 /**
  * Created by Vincente on 4/15/17.
@@ -25,11 +23,11 @@ import response.NotImplementedResponseTest
         RequestHandlerTest::class,
         RequestReaderTest::class,
         RequestTest::class,
+        BadRequestResponseTest::class,
         BinaryResponseTest::class,
         JsonResponseTest::class,
-        BadRequestResponseTest::class,
-        NotImplementedResponseTest::class
+        NotImplementedResponseTest::class,
+        ResponseHandlerTest::class
 )
 
-class JunitTestSuite {
-}
+class JunitTestSuite
