@@ -1,5 +1,7 @@
 package method
 
+import http.HttpMethod
+import http.MethodValidator
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -2,7 +2,8 @@ package request
 
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
-import method.HttpMethod
+import http.HttpMethod
+import http.HttpRequestReader
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.ByteArrayInputStream
@@ -11,14 +12,14 @@ import java.io.InputStream
 /**
  * Created by Vincente A. Campisi on 03/04/17.
  */
-class RequestReaderTest {
+class HttpRequestReaderTest {
     @Test(expected = IllegalArgumentException::class)
     fun readNull() {
         val mockInputStream = mock<InputStream> {
             on { read() } doReturn -1
         }
 
-        val classUnderTest = RequestReader(mockInputStream)
+        val classUnderTest = HttpRequestReader(mockInputStream)
         assertEquals(HttpMethod.UNKNOWN, classUnderTest.readMethod())
     }
 
@@ -28,7 +29,7 @@ class RequestReaderTest {
             on { read() } doReturn ' '.toInt() doReturn -1
         }
 
-        val classUnderTest = RequestReader(mockInputStream)
+        val classUnderTest = HttpRequestReader(mockInputStream)
         assertEquals(HttpMethod.UNKNOWN, classUnderTest.readMethod())
     }
 
@@ -39,7 +40,7 @@ class RequestReaderTest {
                     'S'.toInt() doReturn 'T'.toInt() doReturn -1
         }
 
-        val classUnderTest = RequestReader(mockInputStream)
+        val classUnderTest = HttpRequestReader(mockInputStream)
         assertEquals(HttpMethod.POST, classUnderTest.readMethod())
     }
 
@@ -50,13 +51,13 @@ class RequestReaderTest {
                     'S'.toInt() doReturn 'T'.toInt() doReturn -1
         }
 
-        val classUnderTest = RequestReader(mockInputStream)
+        val classUnderTest = HttpRequestReader(mockInputStream)
         assertEquals(HttpMethod.UNKNOWN, classUnderTest.readMethod())
     }
 
     @Test
     fun readBytes() {
-        val classUnderTest = RequestReader(ByteArrayInputStream("Th\n".toByteArray()))
+        val classUnderTest = HttpRequestReader(ByteArrayInputStream("Th\n".toByteArray()))
         var byteArray = ByteArray(3)
 
         assertEquals(3, classUnderTest.readBytes(3, byteArray))
@@ -64,7 +65,7 @@ class RequestReaderTest {
 
     @Test
     fun readBytesInvalid() {
-        val classUnderTest = RequestReader(ByteArrayInputStream("".toByteArray()))
+        val classUnderTest = HttpRequestReader(ByteArrayInputStream("".toByteArray()))
         var byteArray = ByteArray(1)
 
         assertEquals(-1, classUnderTest.readBytes(1, byteArray))
@@ -82,7 +83,7 @@ class RequestReaderTest {
 //            on { read() } doReturn -1
 //        }
 //
-//        val classUnderTest = RequestReader(mockInputStream)
+//        val classUnderTest = HttpRequestReader(mockInputStream)
 //        assertEquals("", classUnderTest.readLine())
 //    }
 //
@@ -92,7 +93,7 @@ class RequestReaderTest {
 //            on { read() } doReturn ' '.toInt() doReturn -1
 //        }
 //
-//        val classUnderTest = RequestReader(mockInputStream)
+//        val classUnderTest = HttpRequestReader(mockInputStream)
 //        assertEquals(" ", classUnderTest.readLine())
 //    }
 //
@@ -105,7 +106,7 @@ class RequestReaderTest {
 //            on { read() } doReturn 'T'.toInt() doReturn 'h'.toInt() doReturn '\n'.toInt() doReturn -1
 //        }
 //
-//        val classUnderTest = RequestReader(mockInputStream)
+//        val classUnderTest = HttpRequestReader(mockInputStream)
 //        assertEquals("Th\n", classUnderTest.readLine())
 //    }
 }

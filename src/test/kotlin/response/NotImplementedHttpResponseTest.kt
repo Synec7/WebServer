@@ -1,5 +1,7 @@
 package response
 
+import app.NotImplementedHttpResponse
+import http.StatusCode
 import org.junit.Assert
 import org.junit.Test
 import java.time.ZoneId
@@ -9,7 +11,7 @@ import java.time.format.DateTimeFormatter
 /**
  * Created by Vincente A. Campisi on 19/04/17.
  */
-class NotImplementedResponseTest {
+class NotImplementedHttpResponseTest {
 
     @Test
     fun blankClass() {
@@ -17,6 +19,6 @@ class NotImplementedResponseTest {
         response += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
         response += "Connection:close\r\n"
 
-        Assert.assertEquals(response, NotImplementedResponse().getResponseText())
+        Assert.assertEquals(response, NotImplementedHttpResponse().getResponseText())
     }
 }

@@ -1,5 +1,8 @@
 package response
 
+import app.BinaryHttpResponse
+import app.JsonHttpResponse
+import http.StatusCode
 import org.junit.Assert
 import org.junit.Test
 import java.time.ZoneId
@@ -9,16 +12,16 @@ import java.time.format.DateTimeFormatter
 /**
  * Created by Vincente A. Campisi on 19/04/17.
  */
-class JsonResponseTest {
+class JsonHttpResponseTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun nullBody() {
-        var br = BinaryResponse(ByteArray(0))
+        var br = BinaryHttpResponse(ByteArray(0))
     }
 
     @Test
     fun abc() {
-        var br = JsonResponse("abc".toByteArray(Charsets.ISO_8859_1))
+        var br = JsonHttpResponse("abc".toByteArray(Charsets.ISO_8859_1))
         Assert.assertNotNull(br)
         Assert.assertNotNull(br.headers)
         Assert.assertNotNull(br.responseBody)

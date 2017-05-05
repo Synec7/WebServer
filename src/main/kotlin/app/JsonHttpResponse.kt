@@ -1,7 +1,9 @@
-package response
+package app
 
-import header.HeaderBuilder
-import header.listHeaders
+import http.Headers
+import http.StatusCode
+import http.listHeaders
+
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -9,9 +11,9 @@ import java.time.format.DateTimeFormatter
 /**
  * Created by Vincente A. Campisi on 10/04/17.
  */
-class JsonResponse(requestBody: ByteArray?) : Response {
+class JsonHttpResponse(requestBody: ByteArray?) : HttpResponse {
     override val responseText = StringBuilder()
-    override val headers = HeaderBuilder()
+    override val headers = Headers()
     override val httpVersion = "HTTP/1.1"
     override val responseBody: ByteArray = parseJsonToUtf8(requestBody)
 
@@ -21,7 +23,7 @@ class JsonResponse(requestBody: ByteArray?) : Response {
         headers.addHeader("Connection:close")
         headers.addHeader("Content-Length:${this.responseBody.size}")
         headers.addHeader("Content-Type:application/json;charset=utf-8")
-        this.responseText.append(headers.getHeaderReader().listHeaders())
+        this.responseText.append(headers.getHeaderList().listHeaders())
     }
 
     override fun getResponseText(): String = this.responseText.toString()

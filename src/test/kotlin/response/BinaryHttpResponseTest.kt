@@ -1,5 +1,7 @@
 package response
 
+import app.BinaryHttpResponse
+import http.StatusCode
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
@@ -10,16 +12,16 @@ import java.time.format.DateTimeFormatter
 /**
  * Created by Vincente A. Campisi on 19/04/17.
  */
-class BinaryResponseTest {
+class BinaryHttpResponseTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun nullBody() {
-        var br = BinaryResponse(ByteArray(0))
+        var br = BinaryHttpResponse(ByteArray(0))
     }
 
     @Test
     fun abc() {
-        var br = BinaryResponse("abc".toByteArray(Charsets.ISO_8859_1))
+        var br = BinaryHttpResponse("abc".toByteArray(Charsets.ISO_8859_1))
         assertNotNull(br)
         assertNotNull(br.headers)
         assertNotNull(br.responseBody)

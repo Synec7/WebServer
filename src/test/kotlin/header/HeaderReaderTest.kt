@@ -1,6 +1,9 @@
 package header
 
 
+import http.HttpHeader
+import http.getHeader
+import http.listHeaders
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.util.*

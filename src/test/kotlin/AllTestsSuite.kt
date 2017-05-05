@@ -1,12 +1,12 @@
 
-import header.HeaderBuilderTest
 import header.HeaderReaderTest
+import header.HeadersTest
 import header.HttpHeaderTest
 import method.MethodValidatorTest
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
-import request.RequestReaderTest
-import request.RequestTest
+import request.HttpRequestReaderTest
+import request.HttpRequestTest
 import response.*
 
 /**
@@ -16,18 +16,18 @@ import response.*
 @RunWith(Suite::class)
 
 @Suite.SuiteClasses(
-        HeaderBuilderTest::class,
+        HeadersTest::class,
         HeaderReaderTest::class,
         HttpHeaderTest::class,
         MethodValidatorTest::class,
-        RequestHandlerTest::class,
-        RequestReaderTest::class,
-        RequestTest::class,
-        BadRequestResponseTest::class,
-        BinaryResponseTest::class,
-        JsonResponseTest::class,
-        NotImplementedResponseTest::class,
-        ResponseHandlerTest::class
+//        HttpRequestHandlerTest::class,
+        HttpRequestReaderTest::class,
+        HttpRequestTest::class,
+        BadRequestHttpResponseTest::class,
+        BinaryHttpResponseTest::class,
+        JsonHttpResponseTest::class,
+        NotImplementedHttpResponseTest::class,
+        WebHttpResponseHandlerTest::class
 )
 
 class JunitTestSuite

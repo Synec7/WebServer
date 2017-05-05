@@ -1,15 +1,14 @@
-package response
+package app
 
-import header.HeaderBuilder
+import core.IResponse
+import http.Headers
 
-/**
+/**u
  * Created by Vincente A. Campisi on 10/04/17.
  */
-interface Response {
+interface HttpResponse : IResponse {
     val responseText: StringBuilder
-    val headers: HeaderBuilder
+    val headers: Headers
     val httpVersion: String
     val responseBody: ByteArray?
-
-    fun getResponseText(): String
 }
