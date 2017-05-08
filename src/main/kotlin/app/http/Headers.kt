@@ -22,13 +22,11 @@ class Headers {
     fun addHeader(line: String) {
             val fieldName = line.substringBefore(":").trim()
             val fieldValue = line.substringAfter(":").trim()
-//          check if the processed fieldName or fieldValue are the same length of the original string
-//          because if : is not found, the original string is returned
+
+//        If fieldName or fieldValue are the same length of the original, the token was not found
             if(fieldName.length == line.length || fieldValue.length == line.length)
                 throw IllegalArgumentException("Invalid header format. ") // give info to user about correct format
-//            this.headers.add(HttpHeader(fieldName, fieldValue))
-////        } catch (iob: IndexOutOfBoundsException) {
-////            throw IllegalArgumentException("Invalid header format.")
+
             this.headers.add(HttpHeader(fieldName, fieldValue))
 
     }

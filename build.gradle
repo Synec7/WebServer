@@ -2,7 +2,8 @@ group 'com.qitasc'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.0.5'
+//    ext.kotlin_version = '1.0.5'
+    ext.kotlin_version = '1.1.1'
 
     repositories {
         mavenCentral()

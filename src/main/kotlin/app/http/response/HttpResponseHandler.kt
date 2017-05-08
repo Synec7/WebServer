@@ -1,28 +1,33 @@
 package app.http.response
 
+import app.http.HttpMethod
 import app.http.getHeader
 import app.http.request.HttpRequest
+import core.Request
+import core.Response
+import core.ResponseHandler
+import java.net.Socket
 
 /**
  * Created by Vincente A. Campisi on 07/04/17.
  */
-class HttpResponseHandler : core.ResponseHandler {
+class HttpResponseHandler : ResponseHandler {
 
-    override fun buildResponse(httpRequest: core.Request): core.Response =
+    override fun buildResponse(httpRequest: Request): Response =
 
             when ((httpRequest as HttpRequest).method) {
-                app.http.HttpMethod.POST -> buildPost(httpRequest.headers.getHeader("Content-Type"), httpRequest.body)
-                app.http.HttpMethod.UNKNOWN -> app.http.response.BadRequestHttpResponse()
+                HttpMethod.POST -> buildPost(httpRequest.headers.getHeader("Content-Type"), httpRequest.body)
+                HttpMethod.UNKNOWN -> BadRequestHttpResponse()
                 else -> {
-                    app.http.response.NotImplementedHttpResponse()
+                    NotImplementedHttpResponse()
                 }
             }
 
-    override fun sendDefaultResponse(socket: java.net.Socket) {
-        sendResponse(socket, app.http.response.BadRequestHttpResponse())
+    override fun sendDefaultResponse(socket: Socket) {
+        sendResponse(socket, BadRequestHttpResponse())
     }
 
-    override fun sendResponse(socket: java.net.Socket, httpResponse: core.Response) {
+    override fun sendResponse(socket: Socket, httpResponse: Response) {
         val output = socket.getOutputStream()
         output.write("${httpResponse.getResponseText()}\r\n".toByteArray(Charsets.ISO_8859_1))
         (httpResponse as HttpResponse).responseBody?.let {
@@ -34,10 +39,10 @@ class HttpResponseHandler : core.ResponseHandler {
 
     private fun buildPost(contentType: String, body: ByteArray?): HttpResponse =
             when (contentType) {
-                "application/octet-stream" -> app.http.response.BinaryHttpResponse(body)
-                "application/json" -> app.http.response.JsonHttpResponse(body)
+                "application/octet-stream" -> BinaryHttpResponse(body)
+                "application/json" -> JsonHttpResponse(body)
                 else -> {
-                    app.http.response.BadRequestHttpResponse()
+                    BadRequestHttpResponse()
                 }
             }
 

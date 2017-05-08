@@ -1,12 +1,10 @@
 package core
 
-import app.http.request.HttpRequestHandler
 import mu.KLogging
 import org.apache.log4j.BasicConfigurator
 import java.net.ServerSocket
 import java.net.Socket
 import java.net.SocketException
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -15,7 +13,7 @@ import java.util.concurrent.TimeUnit
  */
 
 class SocketServer(private val socket: ServerSocket,
-                   private val requestHandler: HttpRequestHandler,
+                   private val requestHandler: RequestHandler,
                    private val responseHandler: ResponseHandler) : Server {
 
     companion object : KLogging()
@@ -65,6 +63,6 @@ class SocketServer(private val socket: ServerSocket,
             }
 
     override fun getRuntime(): Runtime = Runtime.getRuntime()
-    override fun getExecutor(): ExecutorService = this.executor
+//    override fun getExecutor(): ExecutorService = this.executor
 
 }

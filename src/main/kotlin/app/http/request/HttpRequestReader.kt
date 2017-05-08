@@ -1,15 +1,19 @@
 package app.http.request
 
+import app.http.Headers
+import app.http.HttpHeader
+import app.http.HttpMethod
+
 /**
  * Created by Vincente A. Campisi on 03/04/17.
  */
 class HttpRequestReader(private val inputStream: java.io.InputStream) {
 
-    fun readMethod(): app.http.HttpMethod = MethodValidator().validateMethod(readLine())
+    fun readMethod(): HttpMethod = MethodValidator().validateMethod(readLine())
 
-    fun readHeaders(): List<app.http.HttpHeader> {
+    fun readHeaders(): List<HttpHeader> {
         var line: String = readLine()
-        val headers = app.http.Headers()
+        val headers = Headers()
 
         while (line != "\r\n" && !line.isEmpty()) {
             headers.addHeader(line)
