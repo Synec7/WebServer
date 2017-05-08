@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService
  */
 class ServerShutdownHook(private val executor: ExecutorService, private val clientConnections: MutableList<Socket>) : Runnable {
 //    override fun run() {
-//        val logger = Server.logger
+//        val logger = SocketServer.logger
 //        this.executor.shutdown()
 //
 //        if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
@@ -16,15 +16,15 @@ class ServerShutdownHook(private val executor: ExecutorService, private val clie
 //            logger.info("${dropped.size} tasks not executed.")
 //        }
 //
-//        logger.info("Server shut down complete.")
+//        logger.info("SocketServer shut down complete.")
 //    }
 
     override fun run() {
         try {
-            val logger = Server.logger
+            val logger = SocketServer.logger
             for (s: Socket in clientConnections)
                 s.close()
-            logger.info("Server shut down complete.")
+            logger.info("SocketServer shut down complete.")
         } catch (ignoredException: Exception) {
         }
     }

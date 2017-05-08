@@ -1,13 +1,13 @@
 
-import header.HeaderReaderTest
-import header.HeadersTest
-import header.HttpHeaderTest
-import method.MethodValidatorTest
+import app.http.HeaderReaderTest
+import app.http.HeadersTest
+import app.http.HttpHeaderTest
+import app.http.request.HttpRequestReaderTest
+import app.http.request.HttpRequestTest
+import app.http.request.MethodValidatorTest
+import app.http.response.*
 import org.junit.runner.RunWith
 import org.junit.runners.Suite
-import request.HttpRequestReaderTest
-import request.HttpRequestTest
-import response.*
 
 /**
  * Created by Vincente on 4/15/17.

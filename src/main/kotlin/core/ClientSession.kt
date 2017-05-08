@@ -8,8 +8,8 @@ import java.net.Socket
  * Created by Vincente A. Campisi on 20/03/17.
  */
 class ClientSession(private val socket: Socket,
-                    private val requestHandler: IRequestHandler,
-                    private val responseHandler: IResponseHandler) : Runnable {
+                    private val requestHandler: RequestHandler,
+                    private val responseHandler: ResponseHandler) : Runnable {
 
     companion object : KLogging()
 
