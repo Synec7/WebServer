@@ -2,7 +2,6 @@ package app.http.request
 
 import app.http.HttpHeader
 import app.http.HttpMethod
-import app.http.HttpMethod.POST
 import app.http.getHeader
 import core.Request
 import core.RequestHandler
@@ -17,7 +16,7 @@ class HttpRequestHandler : RequestHandler {
         val requestReader = HttpRequestReader(socket.getInputStream())
         val request = HttpRequest(requestReader.readMethod(), requestReader.readHeaders())
 
-        if (request.method == POST) {
+        if (request.method == HttpMethod.POST) {
             try {
                 receiveRequestBody(socket, request.headers.getHeader("content-length").toInt(), request)
             } catch (nfe: NumberFormatException) {

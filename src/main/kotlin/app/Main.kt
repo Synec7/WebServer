@@ -2,8 +2,8 @@ package app
 
 import app.http.request.HttpRequestHandler
 import app.http.response.HttpResponseHandler
-import core.SocketServer
 import core.ServerShutdownHook
+import core.SocketServer
 import java.net.ServerSocket
 
 /**
@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     val socket = ServerSocket(60074)
     val server = SocketServer(socket, HttpRequestHandler(), HttpResponseHandler())
     server.getRuntime().addShutdownHook(
-            Thread(ServerShutdownHook(server.getExecutor(), server.clientConnections))
+            Thread(ServerShutdownHook(server.clientConnections))
     )
 
     Thread{server.listen()}.start()

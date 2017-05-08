@@ -1,5 +1,6 @@
 package core
 
+import app.http.request.HttpRequestHandler
 import mu.KLogging
 import org.apache.log4j.BasicConfigurator
 import java.net.ServerSocket
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit
  */
 
 class SocketServer(private val socket: ServerSocket,
-                   private val requestHandler: RequestHandler,
+                   private val requestHandler: HttpRequestHandler,
                    private val responseHandler: ResponseHandler) : Server {
 
     companion object : KLogging()
