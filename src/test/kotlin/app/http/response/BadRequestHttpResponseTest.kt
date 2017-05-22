@@ -1,7 +1,7 @@
 package app.http.response
 
-import app.http.StatusCode
-import org.junit.Assert.assertEquals
+import http.StatusCode
+import org.junit.Assert.*
 import org.junit.Test
 import java.time.ZoneId
 import java.time.ZonedDateTime

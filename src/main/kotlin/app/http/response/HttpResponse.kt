@@ -1,7 +1,7 @@
 package app.http.response
 
-import app.http.Headers
 import core.Response
+import http.Headers
 
 /**u
  * Created by Vincente A. Campisi on 10/04/17.

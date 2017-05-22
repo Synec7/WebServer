@@ -1,4 +1,4 @@
-//import app.http.HttpMethod
+//import http.HttpMethod
 //import app.http.request.HttpRequestHandler
 //import org.junit.Assert.assertEquals
 //import org.junit.Test

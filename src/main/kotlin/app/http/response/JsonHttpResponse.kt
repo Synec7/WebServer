@@ -1,9 +1,8 @@
 package app.http.response
 
-import app.http.Headers
-import app.http.StatusCode
-import app.http.listHeaders
-import javafx.beans.binding.Bindings.isNotEmpty
+import http.Headers
+import http.StatusCode
+import http.listHeaders
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter

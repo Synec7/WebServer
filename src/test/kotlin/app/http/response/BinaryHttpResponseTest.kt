@@ -1,8 +1,7 @@
 package app.http.response
 
-import app.http.StatusCode
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import http.StatusCode
+import org.junit.Assert.*
 import org.junit.Test
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -16,6 +15,7 @@ class BinaryHttpResponseTest {
     @Test(expected = IllegalArgumentException::class)
     fun nullBody() {
         var br = BinaryHttpResponse(ByteArray(0))
+        assertNotNull(br)
     }
 
     @Test

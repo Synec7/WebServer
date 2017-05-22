@@ -1,8 +1,8 @@
 package app.http.request
 
-import app.http.HttpMethod
-import app.http.request.MethodValidator
-import org.junit.Assert.assertEquals
+import http.HttpMethod
+import http.MethodValidator
+import org.junit.Assert.*
 import org.junit.Test
 
 /**

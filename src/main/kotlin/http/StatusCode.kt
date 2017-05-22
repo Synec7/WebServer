@@ -1,4 +1,4 @@
-package app.http
+package http
 
 /**
  * Created by Vincente A. Campisi on 31/03/17.

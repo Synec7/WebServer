@@ -1,11 +1,10 @@
 package app.http.response
 
-import app.http.HttpHeader
-import app.http.HttpMethod
-import app.http.StatusCode
-import app.http.request.HttpRequest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import http.HttpHeader
+import http.HttpMethod
+import http.HttpRequest
+import http.StatusCode
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import java.time.ZoneId
@@ -18,11 +17,11 @@ import java.util.*
  */
 class WebHttpResponseHandlerTest {
 
-    lateinit var rh: HttpResponseHandler
+    lateinit var rh: HttpResponseBuilder
 
     @Before
     fun setup() {
-        rh = HttpResponseHandler()
+        rh = HttpResponseBuilder()
     }
 
     @Test

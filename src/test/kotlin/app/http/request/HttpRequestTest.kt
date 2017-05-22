@@ -1,8 +1,8 @@
 package app.http.request
 
-import app.http.HttpMethod
-import org.junit.Assert.assertNotNull
-import org.junit.Assert.assertNull
+import http.HttpMethod
+import http.HttpRequest
+import org.junit.Assert.*
 import org.junit.Test
 
 /**

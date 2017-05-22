@@ -9,25 +9,25 @@ import java.net.Socket
  */
 class ClientSession(private val socket: Socket,
                     private val requestHandler: RequestHandler,
-                    private val responseHandler: ResponseHandler) : Runnable {
+                    private val responseBuilder: ResponseBuilder,
+                    private val responseDispatcher: ResponseDispatcher) : Runnable {
 
     companion object : KLogging()
 
     override fun run() {
         try {
             val request = requestHandler.receiveRequest(socket)
-            responseHandler.sendResponse(socket,
-                    responseHandler.buildResponse(request)
-            )
+            val response = responseBuilder.buildResponse(request)
+            responseDispatcher.sendResponse(socket, response)
         } catch (ioe: IOException) {
             logger.error(ioe) { ioe.message }
-            responseHandler.sendDefaultResponse(socket)
+            responseDispatcher.sendDefaultResponse(socket)
         } catch (iae: IllegalArgumentException) {
             logger.error(iae) { iae.message }
-            responseHandler.sendDefaultResponse(socket)
+            responseDispatcher.sendDefaultResponse(socket)
         } catch(e: Exception) {
             logger.error(e) { e.message }
-            responseHandler.sendDefaultResponse(socket)
+            responseDispatcher.sendDefaultResponse(socket)
         } finally {
             this.socket.getOutputStream().close()
             this.socket.close()

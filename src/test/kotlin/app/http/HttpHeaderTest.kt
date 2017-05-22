@@ -1,5 +1,6 @@
 package app.http
 
+import http.HttpHeader
 import org.junit.Assert.*
 import org.junit.Test
 
