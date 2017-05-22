@@ -2,24 +2,26 @@ package app.http.response
 
 import http.StatusCode
 import org.junit.Assert
+import org.junit.Assert.*
 import org.junit.Test
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 
 /**
- * Created by Vincente A. Campisi on 19/04/17.
- */
+* Created by Vincente A. Campisi on 19/04/17.
+*/
 class JsonHttpResponseTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun nullBody() {
-        var br = BinaryHttpResponse(ByteArray(0))
+        val br = BinaryHttpResponse(ByteArray(0))
+        assertNotNull(br)
     }
 
     @Test
     fun abc() {
-        var br = JsonHttpResponse("abc".toByteArray(Charsets.ISO_8859_1))
+        val br = JsonHttpResponse("abc".toByteArray(Charsets.ISO_8859_1))
         Assert.assertNotNull(br)
         Assert.assertNotNull(br.headers)
         Assert.assertNotNull(br.responseBody)

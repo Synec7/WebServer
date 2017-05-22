@@ -13,8 +13,8 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 /**
- * Created by Vincente A. Campisi on 10/04/17.
- */
+* Created by Vincente A. Campisi on 10/04/17.
+*/
 class WebHttpResponseHandlerTest {
 
     lateinit var rh: HttpResponseBuilder
@@ -116,6 +116,7 @@ class WebHttpResponseHandlerTest {
                 listOf(HttpHeader("content-length", "3"), HttpHeader("content-type", "application/octet-stream")),
                 "".toByteArray(Charsets.ISO_8859_1))
         )
+        assertNotNull(response)
     }
 
 }

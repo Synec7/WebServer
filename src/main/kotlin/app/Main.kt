@@ -7,8 +7,8 @@ import core.SocketServer
 import java.net.ServerSocket
 
 /**
- * Created by Vincente A. Campisi on 05/04/17.
- */
+* Created by Vincente A. Campisi on 05/04/17.
+*/
 
 fun main(args: Array<String>) {
 
@@ -22,7 +22,6 @@ fun main(args: Array<String>) {
 
 		if(input == "exit") {
 			Thread { server.shutdown() }.start()
-//			server.shutdown()
 			break
 		}
 	}
