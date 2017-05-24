@@ -3,7 +3,9 @@ package app.http.response
 import http.HttpHeader
 import http.HttpMethod
 import http.HttpRequest
-import http.StatusCode
+import http.HttpResponse
+import http.HttpResponseBuilder
+import http.HttpStatusCode
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -28,7 +30,7 @@ class WebHttpResponseHandlerTest {
     fun buildUnknownResponse() {
         val response = rh.buildResponse(HttpRequest(HttpMethod.UNKNOWN, listOf(HttpHeader("", ""))))
         assertNotNull(response)
-        var responseText = "HTTP/1.1 ${StatusCode.BAD_REQUEST.code} ${StatusCode.BAD_REQUEST.description}\r\n"
+        var responseText = "HTTP/1.1 ${HttpStatusCode.BAD_REQUEST.code} ${HttpStatusCode.BAD_REQUEST.description}\r\n"
         responseText += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
         responseText += "Connection:close\r\n"
         assertEquals(responseText, response.getResponseText())
@@ -38,7 +40,7 @@ class WebHttpResponseHandlerTest {
     fun buildUnimplementedResponse() {
         val response = rh.buildResponse(HttpRequest(HttpMethod.GET, listOf(HttpHeader("", ""))))
         assertNotNull(response)
-        var responseText = "HTTP/1.1 ${StatusCode.NOT_IMPLEMENTED.code} ${StatusCode.NOT_IMPLEMENTED.description}\r\n"
+        var responseText = "HTTP/1.1 ${HttpStatusCode.NOT_IMPLEMENTED.code} ${HttpStatusCode.NOT_IMPLEMENTED.description}\r\n"
         responseText += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
         responseText += "Connection:close\r\n"
         assertEquals(responseText, response.getResponseText())
@@ -52,7 +54,7 @@ class WebHttpResponseHandlerTest {
                 "abc".toByteArray(Charsets.ISO_8859_1))
         )
         assertNotNull(response)
-        var responseText = "HTTP/1.1 ${StatusCode.BAD_REQUEST.code} ${StatusCode.BAD_REQUEST.description}\r\n"
+        var responseText = "HTTP/1.1 ${HttpStatusCode.BAD_REQUEST.code} ${HttpStatusCode.BAD_REQUEST.description}\r\n"
         responseText += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
         responseText += "Connection:close\r\n"
         assertEquals(responseText, response.getResponseText())
@@ -66,7 +68,7 @@ class WebHttpResponseHandlerTest {
                 "abc".toByteArray(Charsets.ISO_8859_1))
         )
         assertNotNull(response)
-        var responseText = "HTTP/1.1 ${StatusCode.BAD_REQUEST.code} ${StatusCode.BAD_REQUEST.description}\r\n"
+        var responseText = "HTTP/1.1 ${HttpStatusCode.BAD_REQUEST.code} ${HttpStatusCode.BAD_REQUEST.description}\r\n"
         responseText += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
         responseText += "Connection:close\r\n"
         assertEquals(responseText, response.getResponseText())
@@ -81,7 +83,7 @@ class WebHttpResponseHandlerTest {
         )
 
         assertNotNull(response)
-        var responseString = "HTTP/1.1 ${StatusCode.OK.code} ${StatusCode.OK.description}\r\n"
+        var responseString = "HTTP/1.1 ${HttpStatusCode.OK.code} ${HttpStatusCode.OK.description}\r\n"
         responseString += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
         responseString += "Connection:close\r\n"
         responseString += "Content-Length:3\r\n"
@@ -99,7 +101,7 @@ class WebHttpResponseHandlerTest {
                 "abc".toByteArray(Charsets.ISO_8859_1))
         )
 
-        var responseString = "HTTP/1.1 ${StatusCode.OK.code} ${StatusCode.OK.description}\r\n"
+        var responseString = "HTTP/1.1 ${HttpStatusCode.OK.code} ${HttpStatusCode.OK.description}\r\n"
         responseString += "Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}\r\n"
         responseString += "Connection:close\r\n"
         responseString += "Content-Length:32\r\n"

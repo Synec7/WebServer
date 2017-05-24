@@ -1,15 +1,15 @@
 package app.http.request
 
 import http.HttpMethod
-import http.MethodValidator
+import http.HttpMethodValidator
 import org.junit.Assert.*
 import org.junit.Test
 
 /**
- * Created by Vincente A. Campisi on 12/04/17.
- */
-class MethodValidatorTest {
-    val m = MethodValidator()
+* Created by Vincente A. Campisi on 12/04/17.
+*/
+class HttpMethodValidatorTest {
+    val m = HttpMethodValidator()
 
     @Test(expected = IllegalArgumentException::class)
     fun validateEmpty() {

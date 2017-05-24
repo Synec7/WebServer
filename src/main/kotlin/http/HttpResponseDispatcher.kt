@@ -1,12 +1,13 @@
-package app.http.response
+package http
 
+import app.http.BadRequestHttpResponse
 import core.Response
 import core.ResponseDispatcher
 import java.net.Socket
 
 /**
- * Created by Vincente A. Campisi on 22/05/17.
- */
+* Created by Vincente A. Campisi on 22/05/17.
+*/
 class HttpResponseDispatcher : ResponseDispatcher {
 	override fun sendDefaultResponse(socket: Socket) {
 		sendResponse(socket, BadRequestHttpResponse())

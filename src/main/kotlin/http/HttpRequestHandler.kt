@@ -1,15 +1,11 @@
-package app.http.request
+package http
 
 import core.RequestHandler
-import http.HttpMethod
-import http.HttpRequest
-import http.HttpRequestReader
-import http.getHeader
 import java.net.Socket
 
 /**
- * Created by Vincente A. Campisi on 03/04/17.
- */
+* Created by Vincente A. Campisi on 03/04/17.
+*/
 class HttpRequestHandler : RequestHandler {
 
 	override fun receiveRequest(socket: Socket): HttpRequest {
