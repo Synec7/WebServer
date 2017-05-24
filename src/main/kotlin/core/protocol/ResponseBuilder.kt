@@ -1,4 +1,4 @@
-package core
+package core.protocol
 
 /**
  * Created by Vincente A. Campisi on 22/05/17.

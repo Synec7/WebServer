@@ -1,71 +1,69 @@
-package app.http
+package http
 
-import http.HttpHeader
 import org.junit.Assert.*
-import org.junit.Test
 
 /**
  * Created by Vincente A. Campisi on 27/03/17.
  */
 class HttpHeaderTest {
 
-    val myHeader = HttpHeader("host", "localhost:60074")
+    val myHeader = http.HttpHeader("host", "localhost:60074")
 
-    @Test
+    @org.junit.Test
     fun notNullHeader() {
         assertNotNull(myHeader)
     }
 
-    @Test
+    @org.junit.Test
     fun notNullFieldName() {
         assertNotNull(myHeader.fieldName)
     }
 
-    @Test
+    @org.junit.Test
     fun notNullFieldValue() {
         assertNotNull(myHeader.fieldValue)
     }
 
-    @Test
+    @org.junit.Test
     fun getFieldName() {
         assertEquals("host", myHeader.fieldName)
     }
 
-    @Test
+    @org.junit.Test
     fun getNotFieldName() {
         assertEquals(false, myHeader.fieldName.equals("Incorrect"))
     }
 
-    @Test
+    @org.junit.Test
     fun getFieldValue() {
         assertEquals("localhost:60074", myHeader.fieldValue)
     }
 
-    @Test
+    @org.junit.Test
     fun getNotFieldValue() {
         assertEquals(false, myHeader.fieldValue.equals("Incorrect"))
     }
 
-    @Test
+    @org.junit.Test
     fun toStringTest() {
         assertEquals("host:localhost:60074", myHeader.toString())
     }
 
-    @Test
+    @org.junit.Test
     fun blankHeaderNotNull() {
-        val myHeader = HttpHeader("", "")
+        val myHeader = http.HttpHeader("", "")
         assertNotNull(myHeader)
     }
 
-    @Test
+    @org.junit.Test
     fun blankHeader() {
-        val myHeader = HttpHeader("", "")
+        val myHeader = http.HttpHeader("", "")
         assertEquals(":", myHeader.toString())
     }
 
-    @Test
+    @org.junit.Test
     fun notSameHeaders() {
-        val myHeader2 = HttpHeader("host", "localhost:60074")
+        val myHeader2 = http.HttpHeader("host", "localhost:60074")
         assertNotSame(myHeader, myHeader2)
     }
 }

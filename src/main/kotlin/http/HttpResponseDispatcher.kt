@@ -1,8 +1,7 @@
 package http
 
-import app.http.BadRequestHttpResponse
-import core.Response
-import core.ResponseDispatcher
+import core.protocol.Response
+import core.protocol.ResponseDispatcher
 import java.net.Socket
 
 /**

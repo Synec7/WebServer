@@ -1,8 +1,6 @@
-package app.http
+package http
 
-import http.Headers
 import org.junit.Assert.*
-import org.junit.Before
 import org.junit.Test
 
 /**
@@ -10,25 +8,24 @@ import org.junit.Test
  */
 class HeadersTest {
 
-    lateinit var hb: Headers
+    lateinit var hb: http.Headers
 
-    @Before
+    @org.junit.Before
     fun createHeaders() {
-        hb = Headers()
+        hb = http.Headers()
     }
 
-    @Test
+    @org.junit.Test
     fun notNullHeaderReader() {
         assertNotNull(hb.getHeaderList())
-        assertEquals(0, hb.getHeaderList().size)
     }
 
-    @Test
+    @org.junit.Test
     fun emptyBuilder() {
         assertEquals(0, hb.getHeaderList().size)
     }
 
-    @Test
+    @org.junit.Test
     fun addOneHeaderSuccess() {
         assertEquals(0, hb.getHeaderList().size)
 
@@ -36,7 +33,7 @@ class HeadersTest {
         assertEquals(1, hb.getHeaderList().size)
     }
 
-    @Test(expected = IllegalArgumentException::class)
+    @org.junit.Test(expected = IllegalArgumentException::class)
     fun addOneHeaderFail() {
         assertEquals(0, hb.getHeaderList().size)
 
@@ -44,12 +41,19 @@ class HeadersTest {
         assertEquals(1, hb.getHeaderList().size)
     }
 
-    @Test
+    @org.junit.Test
     fun addTwoOfSameHeader() {
         hb.addHeader("testName:testValue")
         hb.addHeader("testName:testValue")
         assert(hb.getHeaderList().size == 2)
         assertEquals(hb.getHeaderList()[0], hb.getHeaderList()[0])
         assertEquals(hb.getHeaderList()[0], hb.getHeaderList()[1])
+    }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun addTwoOneFail() {
+        hb.addHeader("testName:testValue")
+        assert(hb.getHeaderList().size == 1)
+        hb.addHeader("")
     }
 }

@@ -1,5 +1,6 @@
 package core
 
+import core.protocol.Protocol
 import mu.KLogging
 import org.apache.log4j.BasicConfigurator
 import java.net.ServerSocket

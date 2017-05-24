@@ -1,6 +1,6 @@
 package http
 
-import core.Request
+import core.protocol.Request
 
 /**
  * Created by Vincente A. Campisi on 22/05/17.

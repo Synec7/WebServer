@@ -1,9 +1,7 @@
-package app.http.request
+package http
 
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
-import http.HttpMethod
-import http.HttpRequestReader
 import org.junit.Assert.*
 import org.junit.Test
 import java.io.ByteArrayInputStream
@@ -76,37 +74,4 @@ class HttpRequestReaderTest {
 
     }
 
-
-//        @Test
-//    fun readNullLine() {
-//        val mockInputStream = mock<InputStream> {
-//            on { read() } doReturn -1
-//        }
-//
-//        val classUnderTest = HttpRequestReader(mockInputStream)
-//        assertEquals("", classUnderTest.readLine())
-//    }
-//
-//    @Test
-//    fun readSpaceLine() {
-//        val mockInputStream = mock<InputStream> {
-//            on { read() } doReturn ' '.toInt() doReturn -1
-//        }
-//
-//        val classUnderTest = HttpRequestReader(mockInputStream)
-//        assertEquals(" ", classUnderTest.readLine())
-//    }
-//
-//    @Test
-//    fun readFullLine() {
-//        val mockInputStream = mock<InputStream> {
-//            val string = "This is a test line\n".toCharArray()
-//            val iterator = string.iterator()
-//
-//            on { read() } doReturn 'T'.toInt() doReturn 'h'.toInt() doReturn '\n'.toInt() doReturn -1
-//        }
-//
-//        val classUnderTest = HttpRequestReader(mockInputStream)
-//        assertEquals("Th\n", classUnderTest.readLine())
-//    }
 }

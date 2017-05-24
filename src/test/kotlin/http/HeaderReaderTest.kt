@@ -1,9 +1,6 @@
-package app.http
+package http
 
 
-import http.HttpHeader
-import http.getHeader
-import http.listHeaders
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*

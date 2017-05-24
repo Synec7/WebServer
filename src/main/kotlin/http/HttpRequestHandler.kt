@@ -1,6 +1,6 @@
 package http
 
-import core.RequestHandler
+import core.protocol.RequestHandler
 import java.net.Socket
 
 /**

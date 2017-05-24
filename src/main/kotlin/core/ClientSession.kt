@@ -1,5 +1,6 @@
 package core
 
+import core.protocol.Protocol
 import mu.KLogging
 import java.io.IOException
 import java.net.Socket

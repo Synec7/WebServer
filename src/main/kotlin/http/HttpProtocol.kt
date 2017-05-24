@@ -1,9 +1,9 @@
 package http
 
-import core.Protocol
-import core.RequestHandler
-import core.ResponseBuilder
-import core.ResponseDispatcher
+import core.protocol.Protocol
+import core.protocol.RequestHandler
+import core.protocol.ResponseBuilder
+import core.protocol.ResponseDispatcher
 
 /**
 * Created by Vincente A. Campisi on 24/05/17.

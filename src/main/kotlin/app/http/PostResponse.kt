@@ -35,7 +35,6 @@ class PostResponse(val request: HttpRequest) : HttpResponse {
 		headers.addHeader("Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}")
 		headers.addHeader("Connection:close")
 		responseBody.let { headers.addHeader("Content-Length:${responseBody!!.size}") }  //TODO: Improve this
-		headers.addHeader("Content-Type:text/plain;charset=utf-8")
 
 		this.responseText.append(headers.getHeaderList().listHeaders())
 	}
@@ -44,10 +43,12 @@ class PostResponse(val request: HttpRequest) : HttpResponse {
 
 	private fun createBinaryResponse() {
 		responseBody = calculateHash(request.body).toByteArray(Charsets.UTF_8)
+		headers.addHeader("Content-Type:text/plain;charset=utf-8")
 	}
 
 	private fun createJsonResponse() {
 		responseBody = parseJsonToUtf8(request.body)
+		headers.addHeader("Content-Type:application/json;charset=utf-8")
 	}
 
 	private fun calculateHash(body: ByteArray?) =

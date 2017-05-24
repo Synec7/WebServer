@@ -1,7 +1,5 @@
-package app.http.response
+package http
 
-import app.http.NotImplementedHttpResponse
-import http.HttpStatusCode
 import org.junit.Assert
 import org.junit.Test
 import java.time.ZoneId

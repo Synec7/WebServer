@@ -1,6 +1,6 @@
 package http
 
-import core.Response
+import core.protocol.Response
 
 /**u
  * Created by Vincente A. Campisi on 10/04/17.
