@@ -1,5 +1,8 @@
 package http
 
+import http.request.HttpRequestHandler
+import http.response.HttpResponseBuilder
+import http.response.HttpResponseDispatcher
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -8,7 +11,7 @@ import org.junit.Test
  */
 class HttpProtocolTest {
 
-	val protocol = HttpProtocol()
+	val protocol = HttpProtocol(HttpRequestHandler(), HttpResponseBuilder(), HttpResponseDispatcher())
 
 	@Test
 	fun checkNotNull() {

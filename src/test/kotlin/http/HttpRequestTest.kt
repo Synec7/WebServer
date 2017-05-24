@@ -1,5 +1,6 @@
 package http
 
+import http.request.HttpRequest
 import org.junit.Assert.*
 
 /**

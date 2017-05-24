@@ -1,6 +1,8 @@
-package http
+package http.request
 
 import core.protocol.Request
+import http.HttpHeader
+import http.HttpMethod
 
 /**
  * Created by Vincente A. Campisi on 22/05/17.

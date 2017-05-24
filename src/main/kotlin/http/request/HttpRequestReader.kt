@@ -1,11 +1,11 @@
-package http
+package http.request
 
 /**
 * Created by Vincente A. Campisi on 03/04/17.
 */
 class HttpRequestReader(private val inputStream: java.io.InputStream) {
 
-    fun readMethod(): HttpMethod = HttpMethodValidator().validateMethod(readLine())
+    fun readMethod(): http.HttpMethod = http.HttpMethodValidator().validateMethod(readLine())
 
     fun readHeaders(): List<http.HttpHeader> {
         var line: String = readLine()

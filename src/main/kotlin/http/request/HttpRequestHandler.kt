@@ -1,18 +1,17 @@
-package http
+package http.request
 
-import core.protocol.RequestHandler
-import java.net.Socket
+import http.getHeader
 
 /**
 * Created by Vincente A. Campisi on 03/04/17.
 */
-class HttpRequestHandler : RequestHandler {
+class HttpRequestHandler : core.protocol.RequestHandler {
 
-	override fun receiveRequest(socket: Socket): HttpRequest {
+	override fun receiveRequest(socket: java.net.Socket): HttpRequest {
 		val requestReader = HttpRequestReader(socket.getInputStream())
 		val request = HttpRequest(requestReader.readMethod(), requestReader.readHeaders())
 
-		if (request.method == HttpMethod.POST) {
+		if (request.method == http.HttpMethod.POST) {
 			try {
 				receiveRequestBody(socket, request.headers.getHeader("content-length").toInt(), request)
 			} catch (nfe: NumberFormatException) {
@@ -22,7 +21,7 @@ class HttpRequestHandler : RequestHandler {
 		return request
 	}
 
-	private fun receiveRequestBody(socket: Socket, contentLength: Int, httpRequest: HttpRequest) {
+	private fun receiveRequestBody(socket: java.net.Socket, contentLength: Int, httpRequest: HttpRequest) {
 		val requestReader = HttpRequestReader(socket.getInputStream())
 		if (contentLength <= 0) {
 			throw IllegalStateException("Invalid content-length header.")

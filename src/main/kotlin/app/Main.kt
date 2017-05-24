@@ -1,7 +1,10 @@
 package app
 
+import app.http.MyCustomHttpResponseBuilder
 import core.SocketServer
 import http.HttpProtocol
+import http.request.HttpRequestHandler
+import http.response.HttpResponseDispatcher
 import java.net.ServerSocket
 
 /**
@@ -11,7 +14,8 @@ import java.net.ServerSocket
 fun main(args: Array<String>) {
 
 	val socket = ServerSocket(60074)
-	val server = SocketServer(socket, HttpProtocol())
+	val protocol = HttpProtocol(HttpRequestHandler(), MyCustomHttpResponseBuilder(), HttpResponseDispatcher())
+	val server = SocketServer(socket, protocol)
 
 	Thread { server.listen() }.start()
 

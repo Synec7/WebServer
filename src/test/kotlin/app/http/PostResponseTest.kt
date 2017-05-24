@@ -2,8 +2,8 @@ package app.http
 
 import http.HttpHeader
 import http.HttpMethod
-import http.HttpRequest
 import http.HttpStatusCode
+import http.request.HttpRequest
 import org.junit.Assert
 import org.junit.Test
 import java.time.ZoneId

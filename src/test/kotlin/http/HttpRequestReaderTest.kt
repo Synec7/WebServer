@@ -2,6 +2,7 @@ package http
 
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
+import http.request.HttpRequestReader
 import org.junit.Assert.*
 import org.junit.Test
 import java.io.ByteArrayInputStream

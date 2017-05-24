@@ -1,11 +1,11 @@
 package app.http
 
 import http.Headers
-import http.HttpRequest
-import http.HttpResponse
 import http.HttpStatusCode
 import http.getHeader
 import http.listHeaders
+import http.request.HttpRequest
+import http.response.HttpResponse
 import java.security.MessageDigest
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -34,7 +34,7 @@ class PostResponse(val request: HttpRequest) : HttpResponse {
 
 		headers.addHeader("Date:${DateTimeFormatter.RFC_1123_DATE_TIME.format(ZonedDateTime.now(ZoneId.of("GMT")))}")
 		headers.addHeader("Connection:close")
-		responseBody.let { headers.addHeader("Content-Length:${responseBody!!.size}") }  //TODO: Improve this
+		responseBody?.let { headers.addHeader("Content-Length:${responseBody!!.size}") }  //TODO: Improve this
 
 		this.responseText.append(headers.getHeaderList().listHeaders())
 	}

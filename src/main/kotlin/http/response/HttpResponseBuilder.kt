@@ -1,25 +1,24 @@
-package http
+package http.response
 
-import app.http.PostResponse
 import core.protocol.Request
 import core.protocol.Response
-import core.protocol.ResponseBuilder
 
 /**
 * Created by Vincente A. Campisi on 22/05/17.
 */
-class HttpResponseBuilder : ResponseBuilder {
+open class HttpResponseBuilder : core.protocol.ResponseBuilder {
 
 	override fun buildResponse(request: Request): Response =
 			try {
-				when ((request as HttpRequest).method) {
-					HttpMethod.UNKNOWN -> BadRequestHttpResponse()
-					HttpMethod.POST -> PostResponse(request)
+				when ((request as http.request.HttpRequest).method) {
+					http.HttpMethod.UNKNOWN -> BadRequestHttpResponse()
 					else -> {
 						NotImplementedHttpResponse()
 					}
 				}
 			} catch (iae: IllegalArgumentException) {
+				BadRequestHttpResponse()
+			} catch (e: Exception) {
 				BadRequestHttpResponse()
 			}
 

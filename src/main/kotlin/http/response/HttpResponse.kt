@@ -1,13 +1,11 @@
-package http
+package http.response
 
-import core.protocol.Response
-
-/**u
+/**
  * Created by Vincente A. Campisi on 10/04/17.
  */
-interface HttpResponse : Response {
+interface HttpResponse : core.protocol.Response {
     val responseText: StringBuilder
-    val headers: Headers
+    val headers: http.Headers
     val httpVersion: String
     var responseBody: ByteArray?
 }
